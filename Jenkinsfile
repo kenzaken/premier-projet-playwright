@@ -22,11 +22,14 @@ pipeline{
             steps{
                 sh "npx playwright test --project=${params.browser}"
                     }
-            steps{
+           
+        }
+        stage('allure repport'){
+             steps{
                 sh 'npx allure generate allure-results --clean -o allure-report'
                 sh 'npx allure open allure-report'
             }
-                 }
+        }
             }
            
    
