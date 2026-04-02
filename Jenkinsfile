@@ -8,7 +8,7 @@ pipeline{
     }
     //ajout un cron
     triggers {
-        cron('36 9 * * *')
+        cron('36 8 * * *')
     }
       parameters {
         string(name: 'fichier', defaultValue: 'panierpom', description: 'cibler le fichier')      
