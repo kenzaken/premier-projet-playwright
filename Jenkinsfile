@@ -6,6 +6,10 @@ pipeline{
         } 
 
     }
+    //ajout un cron
+    triggers {
+        cron('36 9 * * *')
+    }
       parameters {
         string(name: 'fichier', defaultValue: 'panierpom', description: 'cibler le fichier')      
         choice(name: 'browser', choices: ['chromium', 'firefox', 'webkit'], description: 'choisis votre navigateur')
@@ -43,7 +47,11 @@ pipeline{
            
         }
             }
-           
-   
+      //ajout des hooks      
+    post{
+        success {
+            build job: 'jobE', wait: false
+        }
+    }
 
 }
