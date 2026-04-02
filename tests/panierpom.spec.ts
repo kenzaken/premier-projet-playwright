@@ -25,7 +25,7 @@ test.beforeEach("third step", async ({ page }) => {
 
 
 })
-test("verifier le panier des produit avec la notion du pom", async ({ page }) => {
+test("verifier le panier des produit avec la notion du pom",{tag:['@smoke','@regression']}, async ({ page }) => {
 
     // Vérifier produit présent
     await expect(pa.productisvisible()).toContainText("Sauce Labs Backpack")
