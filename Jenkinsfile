@@ -6,9 +6,6 @@ pipeline {
         }
     }
 
-    triggers {
-        cron('* * * * *')
-    }
 
     parameters {
         string(name: 'fichier', defaultValue: 'panierpom', description: 'Cibler le fichier')
