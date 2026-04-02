@@ -7,7 +7,9 @@ pipeline{
 
     }
     //ajout un cron
-    
+    triggers {
+        cron('* * * * *')
+    }
       parameters {
         string(name: 'fichier', defaultValue: 'panierpom', description: 'cibler le fichier')      
         choice(name: 'browser', choices: ['chromium', 'firefox', 'webkit'], description: 'choisis votre navigateur')
