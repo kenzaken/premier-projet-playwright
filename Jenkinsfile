@@ -7,8 +7,9 @@ pipeline{
 
     }
       parameters {
-        string(name: 'panierpom', defaultValue: 'panierpom', description: 'cibler le fichier')      
+        string(name: 'fichier', defaultValue: 'panierpom', description: 'cibler le fichier')      
         choice(name: 'browser', choices: ['chromium', 'firefox', 'webkit'], description: 'choisis votre navigateur')
+        //booleanParam(name: 'allure', defaultValue: true, description: 'generer le rapport')
 
     }
     
@@ -20,15 +21,9 @@ pipeline{
         }
         stage('lancement de test'){
             steps{
-                sh "npx playwright test --project=${params.browser}"
+                sh "npx playwright test ${params.fichier} --project=${params.browser}"
                     }
            
-        }
-        stage('allure repport'){
-             steps{
-                sh 'npx allure generate allure-results --clean -o allure-report'
-                sh 'npx allure open allure-report'
-            }
         }
             }
            
