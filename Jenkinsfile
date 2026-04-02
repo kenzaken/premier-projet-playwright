@@ -23,20 +23,23 @@ pipeline{
         }
         stage('lancement de test'){
             steps{
-                //reflete exactement ce que on fait on local avec la notion des params pour reflete la commande en local
-                 script{
-                    if(params.alltest=true){
-                        sh "npx playwright test --project=${params.browser}"
-                        
-                    } if else{
-                        sh "npx playwright test ${params.fichier} --project=${params.browser}"
+                    //reflete exactement ce que on fait on local avec la notion des params pour reflete la commande en local
+                    script{
+                        if(params.alltest==true){
+                            sh "npx playwright test --project=${params.browser}"
+                            
+                        }else{
+                            if(params.choiceTags==true){
+                                 sh "npx playwright test ${params.choiceTags} --project=${params.browser}"
 
+                            }
+                             else{
+                                 sh "npx playwright test ${params.fichier} --project=${params.browser}"
+                                 } 
+                        }
+                        
                     }
-                    else{
-                        sh "npx playwright test ${params.choiceTags} --project=${params.browser}"
-                    }
-                 }
-                    }
+                }
            
         }
             }
